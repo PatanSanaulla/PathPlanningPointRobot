@@ -1,9 +1,8 @@
 import matplotlib.pyplot as mplot
-import sys
 
 
-MAX_X = 5
-MAX_Y = 5
+MAX_X = 300
+MAX_Y = 200
 
 START_POINT = [] # [x, y]
 GOAL_POINT = [] # [x, y]
@@ -11,13 +10,15 @@ GOAL_POINT = [] # [x, y]
 STEPS_LIST = []
 STEP_OBJECT_LIST = []
 class step:
-	#Method to initialize the node with the values/attributes and add the Node
-	#self: Object of class Node
-	#parent: Object of class Node
-	#Cube: the cube formation for the Node 
+	#Method to initialize the node with the values/attributes and add the step
+	#self: Object of class step
+	#parent: Object of class step
+	#position: the x,y values of the current step
+	#cost: cost of the step to move from the parent to the current position 
 	def __init__(self, parent, position, cost):
 		self.position = position # [x, y]
 		self.parent = parent
+		self.children = []
 		if parent == None:
 			self.costToCome = 0.0
 		else:
@@ -27,8 +28,10 @@ class step:
 
 	def addToGraph(self):
 		if self.position in STEPS_LIST:
+			print("----------")
 			index = STEPS_LIST.index(self.position)
 			if self.costToCome < STEP_OBJECT_LIST[index].costToCome:
+				#print("----------",STEP_OBJECT_LIST[index].children)
 				STEP_OBJECT_LIST[index] = self
 		else:
 			STEPS_LIST.append(self.position)
@@ -36,57 +39,129 @@ class step:
 
 	def moveUp(self):
 		if(self.position[1] > 0):
-			newStep = step(self, [self.position[0], self.position[1]-1], 1.0)
-			#possible Move
+			newPosition = [self.position[0], self.position[1]-1]
+			try:
+				if(self.parent.position == newPosition):
+					pass #going back to the parent
+				else:
+					newStep = step(self,newPosition, 1.0)
+					self.children.append(newStep)
+			except AttributeError:
+				newStep = step(self,newPosition, 1.0)
+				self.children.append(newStep)
+				#possible Move
 		else:
 			return 
 
 	def moveUpRight(self):
-		if(self.position[1] > 0 & self.position[0] < MAX_X):
-			newStep = step(self, [self.position[0]+1, self.position[1]-1], 1.414)
-			#possible Move
+		if(self.position[1] > 0 and self.position[0] < MAX_X):
+			newPosition = [self.position[0]+1, self.position[1]-1]
+			try:
+				if(self.parent.position == newPosition):
+					pass #going back to the parent
+				else:
+					newStep = step(self,newPosition, 1.414)
+					self.children.append(newStep)
+			except AttributeError:
+				newStep = step(self,newPosition, 1.414)
+				self.children.append(newStep)
+				#possible Move
 		else:
 			return 
-	
+
 	def moveRight(self):
 		if(self.position[0] < MAX_X):
-			newStep = step(self, [self.position[0]+1, self.position[1]], 1)
-			#possible Move
+			newPosition = [self.position[0]+1, self.position[1]]
+			try:
+				if(self.parent.position == newPosition):
+					pass #going back to the parent
+				else:
+					newStep = step(self,newPosition, 1.0)
+					self.children.append(newStep)
+			except AttributeError:
+				newStep = step(self,newPosition, 1.0)
+				self.children.append(newStep)
+				#possible Move
 		else:
 			return 
 
 	def moveDownRight(self):
-		if(self.position[1] < MAX_Y & self.position[0] < MAX_X):
-			newStep = step(self, [self.position[0]+1, self.position[1]+1], 1.414)
-			#possible Move
+		if(self.position[1] < MAX_Y and self.position[0] < MAX_X):
+			newPosition = [self.position[0]+1, self.position[1]+1]
+			try:
+				if(self.parent.position == newPosition):
+					pass #going back to the parent
+				else:
+					newStep = step(self,newPosition, 1.414)
+					self.children.append(newStep)
+			except AttributeError:
+				newStep = step(self,newPosition, 1.414)
+				self.children.append(newStep)
+				#possible Move
 		else:
 			return
 	
 	def moveDown(self):
 		if(self.position[1] < MAX_Y):
-			newStep = step(self, [self.position[0], self.position[1]+1], 1)
-			#possible Move
+			newPosition = [self.position[0], self.position[1]+1]
+			try:
+				if(self.parent.position == newPosition):
+					pass #going back to the parent
+				else:
+					newStep = step(self,newPosition, 1.0)
+					self.children.append(newStep)
+			except AttributeError:
+				newStep = step(self,newPosition, 1.0)
+				self.children.append(newStep)
+				#possible Move
 		else:
 			return
 
 	def moveDownLeft(self):
-		if(self.position[1] < MAX_Y & self.position[0] > 0):
-			newStep = step(self, [self.position[0]-1, self.position[1]+1], 1.414)
-			#possible Move
+		if(self.position[1] < MAX_Y and self.position[0] > 0):
+			newPosition = [self.position[0]-1, self.position[1]+1]
+			try:
+				if(self.parent.position == newPosition):
+					pass #going back to the parent
+				else:
+					newStep = step(self,newPosition, 1.414)
+					self.children.append(newStep)
+			except AttributeError:
+				newStep = step(self,newPosition, 1.414)
+				self.children.append(newStep)
+				#possible Move
 		else:
 			return
 
 	def moveLeft(self):
 		if(self.position[0] > 0):
-			newStep = step(self, [self.position[0]-1, self.position[1]], 1)
-			#possible Move
+			newPosition = [self.position[0]-1, self.position[1]]
+			try:
+				if(self.parent.position == newPosition):
+					pass #going back to the parent
+				else:
+					newStep = step(self,newPosition, 1.0)
+					self.children.append(newStep)
+			except AttributeError:
+				newStep = step(self,newPosition, 1.0)
+				self.children.append(newStep)
+				#possible Move
 		else:
 			return
 
 	def moveUpLeft(self):
-		if(self.position[1] > 0 & self.position[0] > 0):
-			newStep = step(self, [self.position[0]-1, self.position[1]-1], 1.414)
-			#possible Move
+		if(self.position[1] > 0 and self.position[0] > 0):
+			newPosition = [self.position[0]-1, self.position[1]-1]
+			try:
+				if(self.parent.position == newPosition):
+					pass #going back to the parent
+				else:
+					newStep = step(self,newPosition, 1.414)
+					self.children.append(newStep)
+			except AttributeError:
+				newStep = step(self,newPosition, 1.414)
+				self.children.append(newStep)
+				#possible Move
 		else:
 			return
 
@@ -139,7 +214,7 @@ backtrack(STEP_OBJECT_LIST[index])
 
 
 
-
+print(STEPS_LIST)
 
 
 
