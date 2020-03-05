@@ -1,0 +1,32 @@
+import numpy as np
+
+import cv2
+from itertools import cycle
+
+def InitCanvas(width, height, color=(255, 255, 255)):
+    canvas = np.ones((height, width, 3), dtype="uint8")
+    canvas[:] = color
+    return canvas
+
+canvas = InitCanvas(300, 200, color=(255,255,255))
+
+
+cv2.circle(canvas,(225,50),25,(0,0,0))
+
+cv2.ellipse(canvas,(150,100),(40,20),0,0,360, (0,0,0))
+
+Recpoints = np.array([[95,170],[100,161],[35,124],[30,133]], np.int32)
+
+Polypoints = np.array([[20,80],[50,50],[75,80],[100,50],[75,15],[25,15]],np.int32)
+
+Diapoints= np.array([[225,190],[250,175],[225,160],[200,175]], np.int32)
+
+
+cv2.polylines(canvas, pts=[Recpoints], isClosed=True, color=(0,0,0))
+cv2.polylines(canvas, pts=[Polypoints], isClosed=True, color=(0,0,0))
+cv2.polylines(canvas, pts=[Diapoints], isClosed=True, color=(0,0,0))
+
+cv2.imshow("obstacles", canvas)
+cv2.imwrite("obstacles.png", canvas)
+
+cv2.waitKey(0)
