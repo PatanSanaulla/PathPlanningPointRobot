@@ -180,13 +180,14 @@ def backtrack(stepObj):
 	yValues.reverse()
 
 	mplot.plot(xValues, yValues)
+	mplot.axis([0, MAX_X, 0, MAX_Y])
 	mplot.xlabel('graphical representation')
 	mplot.show()
 
 startPoints = input("Enter the Start Points (x,y) position:")
-START_POINT = [int(each) for each in startPoints] 
+START_POINT = [int(each) for each in startPoints.split(" ")] 
 goalPoints = input("Enter the Goal Points (x,y) position:")
-GOAL_POINT = [int(each) for each in goalPoints]
+GOAL_POINT = [int(each) for each in goalPoints.split(" ")]
 
 root = step(None, START_POINT, 0)
 
@@ -214,7 +215,7 @@ backtrack(STEP_OBJECT_LIST[index])
 
 
 
-print(STEPS_LIST)
+#print(STEPS_LIST)
 
 
 
