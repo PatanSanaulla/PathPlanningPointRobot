@@ -1,4 +1,8 @@
 import matplotlib.pyplot as mplot
+import matplotlib.animation as animation
+from matplotlib import style
+from datetime import datetime
+#import numpy as np
 
 
 MAX_X = 300
@@ -9,6 +13,13 @@ GOAL_POINT = [] # [x, y]
 
 STEPS_LIST = []
 STEP_OBJECT_LIST = []
+
+
+#style.use('fivethirtyeight')
+
+#fig = mplot.figure()
+#ax1 = fig.add_subplot(1,1,1)
+
 class step:
 	#Method to initialize the node with the values/attributes and add the step
 	#self: Object of class step
@@ -28,7 +39,7 @@ class step:
 
 	def addToGraph(self):
 		if self.position in STEPS_LIST:
-			print("----------")
+			#print("----------")
 			index = STEPS_LIST.index(self.position)
 			if self.costToCome < STEP_OBJECT_LIST[index].costToCome:
 				#print("----------",STEP_OBJECT_LIST[index].children)
@@ -184,18 +195,34 @@ def backtrack(stepObj):
 	mplot.xlabel('graphical representation')
 	mplot.show()
 
+#def animate(i):
+#	xs = []
+#	ys = []
+#	for step in STEPS_LIST:
+#		xs.append(step[0])
+#		ys.append(step[1])
+#	ax1.clear()
+#	ax1.axis([0, MAX_X, 0, MAX_Y])
+#	ax1.plot(xs, ys, 'r')
+
+
 startPoints = input("Enter the Start Points (x,y) position:")
 START_POINT = [int(each) for each in startPoints.split(" ")] 
 goalPoints = input("Enter the Goal Points (x,y) position:")
 GOAL_POINT = [int(each) for each in goalPoints.split(" ")]
 
+now = datetime.now().time()
+print("start time: ",now)
 root = step(None, START_POINT, 0)
+#ani = animation.FuncAnimation(fig, animate, interval=1000)
+#mplot.show()
 
 for eachStep in STEP_OBJECT_LIST:
 
 	if eachStep.position == GOAL_POINT:
 		print("reached the required goal")
-		#backtrack(eachStep)
+		now = datetime.now().time()
+		print("found at time: ",now)
 		break
 	else:
 		eachStep.moveLeft()
@@ -212,6 +239,8 @@ index = STEPS_LIST.index(GOAL_POINT)
 print("index",index)
 print("cost to come:",STEP_OBJECT_LIST[index].costToCome)
 backtrack(STEP_OBJECT_LIST[index])
+now = datetime.now().time()
+print("end time: ",now)
 
 
 
