@@ -1,11 +1,5 @@
 import pygame
 import pygame.gfxdraw
-import math
-import numpy as np
-import cv2
-from heapq import *
-from collections import defaultdict as dd
-
 
 pygame.init()
 
@@ -48,7 +42,7 @@ def showPath(pathList):
 
 def isValidStep(position):
 	pos = tuple(position)
-	if(inObs1(pos) == True):
+	if(inObs1(pos) == True) or (inObs2(pos) == True) or (inObs3(pos) == True) or (inObs4(pos) == True) or (inObs5(pos) == True):
 		return False
 	else:
 		return True
@@ -90,6 +84,4 @@ def inObs5(pos):
 		return True
 	else:
 		x, y = pos[0], pos[1]
-		return ((3 * x + 5 * y <= 1625) and (3 * x - 5 * y <= -275) and (3 * x + 5 * y >= 1475) and (-3 * x + 5 * y <= 125))
-
-    
+		return ((3 * x + 5 * y >= 1625) and  (5 * y - 3 * x >= 275) and (3 * x + 5 * y <= 1475) and (5 * y - 3 * x <= 125))
