@@ -6,9 +6,9 @@ To RUN:\
 ```>>> python pointrobo.py```
 
 Give Values of inital Point (X,Y): \
-Example(for (0,0)): 00 \
+Example(for (5,5)): 5 5 \
 Give values of final Point (X,Y): \
-Example(for (3,2)): 32
+Example(for (295,195)): 295 195
 
 OUTPUT: \
-A Graph with a path from initial point to  the final point. 
+A Graph with a path from initial point to  the final point within the given problem/puzzle space.
