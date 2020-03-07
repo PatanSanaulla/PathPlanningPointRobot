@@ -53,35 +53,53 @@ def inObs1(pos):
 		return True
 	else:
 		x, y = pos[0], pos[1]
-		return ((8 * x + 5 * y <= 1610) and (-38 * x + 65 * y >= 6730) and \
-            (9 * x + 5 * y >= 935) and (37 * x - 65 * y >= -7535))
+		if ((8 * x + 5 * y <= 1610) and (-38 * x + 65 * y >= 6730) and (9 * x + 5 * y >= 935) and (37 * x - 65 * y >= -7535)):
+			obs1_pts.add(pos)
+			return True
+		else:
+			return False
 
 def inObs2(pos):
 	if pos in obs2_pts:
 		return True
 	else:
 		x, y = pos[0], pos[1]
-		return ((13 * x + y >= 340) and (x + y <= 100) and (-7 * x + 5 * y >= -100) or\
-		 (-6 * x + 5 * y <= -50) and (6 * x + 5 * y <= 850) and (7 * x - 5 * y <= 450) and \
-		 (y >= 15) and (-7 * x + 5 * y <= -100))
+		if ((13 * x + y >= 340) and (x + y <= 100) and (-7 * x + 5 * y >= -100) or (-6 * x + 5 * y <= -50) and (6 * x + 5 * y <= 850) and (7 * x - 5 * y <= 450) and \
+		 (y >= 15) and (-7 * x + 5 * y <= -100)):
+			obs2_pts.add(pos)
+			return True
+		else:
+			return False
 
 def inObs3(pos):
 	if pos in obs3_pts:
 		return True
 	else:
 		x, y = pos[0], pos[1]
-		return (((x - 150) ** 2) / 1600 + ((y - 100) ** 2) / 400 <= 1)
+		if (((x - 150) ** 2) / 1600 + ((y - 100) ** 2) / 400 <= 1):
+			obs3_pts.add(pos)
+			return True
+		else:
+			return False
 
 def inObs4(pos):
 	if pos in obs4_pts:
 		return True
 	else:
 		x, y = pos[0], pos[1]
-		return ((x - 225) ** 2 + (y - 50) ** 2 <= 225)
+		if ((x - 225) ** 2 + (y - 50) ** 2 <= 225):
+			obs4_pts.add(pos)
+			return True
+		else:
+			return False
 
 def inObs5(pos):
 	if pos in obs5_pts:
 		return True
 	else:
-		x, y = pos[0], pos[1]
-		return ((3 * x + 5 * y >= 1625) and  (5 * y - 3 * x >= 275) and (3 * x + 5 * y <= 1475) and (5 * y - 3 * x <= 125))
+		x, y = pos[0], pos[1] 
+		if ((3 * x + 5 * y <= 1625) and  (5 * y - 3 * x <= 275) and (3 * x + 5 * y >= 1475) and (5 * y - 3 * x >= 125)):
+			obs5_pts.add(pos)
+			return True
+		else:
+			return False
