@@ -202,8 +202,7 @@ else:
     print("Invalid Goal Point")
 
 #To check if both the values are possible to work with in the puzzle
-if isPossible == 2: 
-	startAnimation()
+if isPossible == 2:
 	now = datetime.now().time()
 	print("start time: ",now)
 
