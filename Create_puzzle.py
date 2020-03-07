@@ -20,9 +20,6 @@ puzzleMap = pygame.display.set_mode((MAX_X, MAX_Y))
 puzzleMap.fill((255, 255, 255))
 
 def startAnimation():
-	#puzzleMap = pygame.display.set_mode((MAX_X, MAX_Y))
-	#puzzleMap.fill((255, 255, 255))
-
 	pygame.draw.circle(puzzleMap, obstacleColor, (225,50), 25)
 
 	pygame.draw.ellipse(puzzleMap, obstacleColor, (110, 80, 80, 40))
