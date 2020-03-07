@@ -53,7 +53,7 @@ def inObs1(pos):
 		return True
 	else:
 		x, y = pos[0], pos[1]
-		return ((9 * x + 5 * y <= 1705) and (37 * x + 65 * y >= 6765) and \
+		return ((8 * x + 5 * y <= 1610) and (-38 * x + 65 * y >= 6730) and \
             (9 * x + 5 * y >= 935) and (37 * x - 65 * y >= -7535))
 
 def inObs2(pos):
