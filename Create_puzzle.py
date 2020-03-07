@@ -16,23 +16,24 @@ startColor = (0, 255, 0)
 goalColor = (255, 0, 0)
 obstacleColor = (0, 0, 0)
 pathColor = (0, 0, 255)
+
 puzzleMap = pygame.display.set_mode((MAX_X, MAX_Y))
 puzzleMap.fill((255, 255, 255))
+pygame.draw.circle(puzzleMap, obstacleColor, (225,50), 25)
 
-def startAnimation():
-	pygame.draw.circle(puzzleMap, obstacleColor, (225,50), 25)
+pygame.draw.ellipse(puzzleMap, obstacleColor, (110, 80, 80, 40))
 
-	pygame.draw.ellipse(puzzleMap, obstacleColor, (110, 80, 80, 40))
-
-	pygame.draw.polygon(puzzleMap, obstacleColor, ((95,170),(100,161),(35,124),(30,133)))
-	pygame.draw.polygon(puzzleMap, obstacleColor, ((20,80),(50,50),(75,80),(100,50),(75,15),(25,15)))
-	pygame.draw.polygon(puzzleMap, obstacleColor, ((225,190),(250,175),(225,160),(200,175)))
-	pygame.display.update()
-
+pygame.draw.polygon(puzzleMap, obstacleColor, ((95,170),(100,161),(35,124),(30,133)))
+pygame.draw.polygon(puzzleMap, obstacleColor, ((20,80),(50,50),(75,80),(100,50),(75,15),(25,15)))
+pygame.draw.polygon(puzzleMap, obstacleColor, ((225,190),(250,175),(225,160),(200,175)))
 
 def updateTheStep(position, color):
-	pygame.gfxdraw.pixel(puzzleMap, position[0], position[1], color)
-	pygame.display.update()
+    for inst in pygame.event.get():
+        if inst.type == pygame.QUIT:
+            pygame.quit()
+            quit()
+    pygame.gfxdraw.pixel(puzzleMap, position[0], position[1], color)
+    pygame.display.update()
 
 
 def showPath(pathList):
@@ -88,7 +89,7 @@ def inObs4(pos):
 		return True
 	else:
 		x, y = pos[0], pos[1]
-		if ((x - 225) ** 2 + (y - 150) ** 2 <= 25 ** 2):
+		if ((x - 225) ** 2 + (y - 50) ** 2 <= 25 ** 2):
 			obs4_pts.add(pos)
 			return True
 		else:
