@@ -32,7 +32,6 @@ class step:
 			if self.costToCome < STEP_OBJECT_LIST[index].costToCome:
 				STEP_OBJECT_LIST[index] = self
 		else:
-			updateTheStep(self.position, startColor)
 			STEPS_LIST.append(self.position)
 			STEP_OBJECT_LIST.append(self)
 
@@ -156,6 +155,13 @@ class step:
 		else:
 			return
 
+def stepsTakenToCompute():
+	for eachStep in STEP_OBJECT_LIST:
+		updateTheStep(eachStep.position, startColor)
+		if eachStep.position == GOAL_POINT:
+			break
+        
+
 
 def backtrack(stepObj):
 	pathValues = []
@@ -197,9 +203,7 @@ else:
 
 #To check if both the values are possible to work with in the puzzle
 if isPossible == 2: 
-	updateTheStep(START_POINT, startColor) #Step to highlight the start point
-	updateTheStep(GOAL_POINT, goalColor) #Step to highlight the Goal point
-
+	startAnimation()
 	now = datetime.now().time()
 	print("start time: ",now)
 
@@ -225,6 +229,10 @@ if isPossible == 2:
 
 	index = STEPS_LIST.index(GOAL_POINT)
 	print("Total Cost to reach the final Point:",STEP_OBJECT_LIST[index].costToCome)
+
+	#Once the whole generation is completed begin the animation
+	stepsTakenToCompute()
+	#To show the backtrack on the graph
 	backtrack(STEP_OBJECT_LIST[index])
 	now = datetime.now().time()
 	print("end time: ",now)
