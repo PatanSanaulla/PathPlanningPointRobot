@@ -16,17 +16,19 @@ startColor = (0, 255, 0)
 goalColor = (255, 0, 0)
 obstacleColor = (0, 0, 0)
 pathColor = (0, 0, 255)
-
 puzzleMap = pygame.display.set_mode((MAX_X, MAX_Y))
 puzzleMap.fill((255, 255, 255))
 
-pygame.draw.circle(puzzleMap, obstacleColor, (225,50), 25)
 
-pygame.draw.ellipse(puzzleMap, obstacleColor, (110, 80, 80, 40))
+def startAnimation():
+	pygame.draw.circle(puzzleMap, obstacleColor, (225,50), 25)
 
-pygame.draw.polygon(puzzleMap, obstacleColor, ((95,170),(100,161),(35,124),(30,133)))
-pygame.draw.polygon(puzzleMap, obstacleColor, ((20,80),(50,50),(75,80),(100,50),(75,15),(25,15)))
-pygame.draw.polygon(puzzleMap, obstacleColor, ((225,190),(250,175),(225,160),(200,175)))
+	pygame.draw.ellipse(puzzleMap, obstacleColor, (110, 80, 80, 40))
+
+	pygame.draw.polygon(puzzleMap, obstacleColor, ((95,170),(100,161),(35,124),(30,133)))
+	pygame.draw.polygon(puzzleMap, obstacleColor, ((20,80),(50,50),(75,80),(100,50),(75,15),(25,15)))
+	pygame.draw.polygon(puzzleMap, obstacleColor, ((225,190),(250,175),(225,160),(200,175)))
+	pygame.display.update()
 
 
 def updateTheStep(position, color, RADIUS):
