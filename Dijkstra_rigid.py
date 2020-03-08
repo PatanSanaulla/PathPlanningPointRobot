@@ -205,8 +205,6 @@ else:
 
 #To check if both the values are possible to work with in the puzzle
 if isPossible == 2: 
-	startAnimation()
-
 	now = datetime.now().time()
 	print("start time: ",now)
 
