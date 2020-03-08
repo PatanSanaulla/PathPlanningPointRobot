@@ -12,7 +12,7 @@ obs3_pts = set()
 obs4_pts = set()
 obs5_pts = set()
 
-startColor = (0, 255, 0)
+startColor = (255,255,0)
 goalColor = (255, 0, 0)
 obstacleColor = (0, 0, 0)
 pathColor = (0, 0, 255)
@@ -26,6 +26,11 @@ pygame.draw.ellipse(puzzleMap, obstacleColor, (110, 80, 80, 40))
 pygame.draw.polygon(puzzleMap, obstacleColor, ((95,170),(100,161),(35,124),(30,133)))
 pygame.draw.polygon(puzzleMap, obstacleColor, ((20,80),(50,50),(75,80),(100,50),(75,15),(25,15)))
 pygame.draw.polygon(puzzleMap, obstacleColor, ((225,190),(250,175),(225,160),(200,175)))
+
+for inst in pygame.event.get():
+    if inst.type == pygame.QUIT:
+        pygame.quit()
+        quit()
 
 def updateTheStep(position, color):
     for inst in pygame.event.get():
@@ -66,7 +71,7 @@ def inObs2(pos):
 		return True
 	else:
 		x, y = pos[0], pos[1]
-		if ((13 * x + y >= 340) and (x + y <= 100) and (-7 * x + 5 * y >= -100) or (-6 * x + 5 * y <= -50) and (6 * x + 5 * y <= 850) and (7 * x - 5 * y <= 450) and \
+		if ((13 * x + y >= 340) and (x + y <= 100) and (-7 * x + 5 * y >= -100) and (y >= 15) or (-6 * x + 5 * y <= -50) and (6 * x + 5 * y <= 850) and (7 * x - 5 * y <= 450) and \
 		 (y >= 15) and (-7 * x + 5 * y <= -100)):
 			obs2_pts.add(pos)
 			return True
